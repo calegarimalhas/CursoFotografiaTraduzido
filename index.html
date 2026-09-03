@@ -25,13 +25,43 @@
 <body>
 
   <!-- Barra de Navegação Superior (Header) -->
+    <!-- Barra de Navegação Superior (Header Sticky sem sobreposição) -->
   <header class="app-header">
-    <div class="header-left">
-      <div class="logo-badge">
-        <div class="logo-icon">📸</div>
-        <span>PHOTOGRAPHY MASTERCLASS</span>
+    <div class="header-top-row">
+      <div class="header-left">
+        <div class="logo-badge">
+          <div class="logo-icon">📸</div>
+          <span>PHOTOGRAPHY MASTERCLASS</span>
+        </div>
+        <span class="course-badge-sub">Workbook Interativo • PT-BR</span>
       </div>
-      <span class="course-badge-sub">Workbook Interativo • PT-BR</span>
+
+      <div class="header-right">
+        <!-- Botão de Instalação do PWA (Mobile/iOS/Android) -->
+        <button id="pwa-install-btn" class="btn-header-action btn-pwa-highlight" title="Instalar App no iPhone / Android">
+          📱 Baixar App
+        </button>
+        <!-- Campo de Busca Global -->
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="global-search" class="search-input" placeholder="Buscar lição...">
+        </div>
+
+        <!-- Botão de Modo de Leitura -->
+        <button id="view-mode-btn" class="btn-header-action" title="Alternar entre Página Individual e Leitura Contínua">
+          📜 Leitura
+        </button>
+
+        <!-- Botão do Dicionário de Inglês -->
+        <button id="open-dict-btn" class="btn-header-action" title="Abrir Dicionário Geral de Termos Fotográficos (Ctrl+K)">
+          📖 Dicionário
+        </button>
+
+        <!-- Alternador de Tema Escuro / Claro -->
+        <button id="theme-toggle-btn" class="btn-header-action" title="Alternar Tema Escuro e Claro">
+          ☀️ Modo Claro
+        </button>
+      </div>
     </div>
 
     <div class="header-center">
@@ -52,38 +82,6 @@
         </div>
         <button id="next-page-btn" class="step-btn" title="Próxima Página (Seta Direita)">▶</button>
       </div>
-    </div>
-
-    <div class="header-right">
-      <!-- Botão de Instalação do PWA (Mobile/iOS/Android) -->
-      <button id="pwa-install-btn" class="btn-header-action btn-pwa-highlight" title="Instalar App no iPhone / Android">
-        📱 Baixar App
-      </button>
-      <!-- Campo de Busca Global -->
-      <div class="search-container">
-        <span class="search-icon">🔍</span>
-        <input type="text" id="global-search" class="search-input" placeholder="Buscar lição ou conceito...">
-      </div>
-
-      <!-- Botão de Modo de Leitura -->
-      <button id="view-mode-btn" class="btn-header-action" title="Alternar entre Página Individual e Leitura Contínua">
-        📜 Leitura Contínua
-      </button>
-
-      <!-- Botão do Dicionário de Inglês -->
-      <button id="open-dict-btn" class="btn-header-action" title="Abrir Dicionário Geral de Termos Fotográficos (Ctrl+K)">
-        📖 Dicionário EN
-      </button>
-
-      <!-- Botão de Dicas e Curiosidades -->
-      <button id="open-tips-btn" class="btn-header-action" title="Dicas de Mestres da Fotografia">
-        💡 Dicas de Mestres
-      </button>
-
-      <!-- Alternador de Tema Escuro / Claro -->
-      <button id="theme-toggle-btn" class="btn-header-action" title="Alternar Tema Escuro e Claro">
-        ☀️ Modo Claro
-      </button>
     </div>
   </header>
 
