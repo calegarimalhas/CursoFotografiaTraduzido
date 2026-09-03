@@ -29,6 +29,10 @@
   <header class="app-header">
     <div class="header-top-row">
       <div class="header-left">
+      <button id="sidebar-toggle-btn" class="btn-sidebar-toggle" title="Abrir Menu de Aulas e Anotações (☰)">
+        <span class="hamburger-icon">☰</span>
+        <span class="sidebar-toggle-label">Menu</span>
+      </button>
         <div class="logo-badge">
           <div class="logo-icon">📸</div>
           <span>PHOTOGRAPHY MASTERCLASS</span>
@@ -89,7 +93,13 @@
   <div class="app-layout">
     
     <!-- Barra Lateral (Sidebar Fiel ao PDF Original) -->
+        <!-- Barra Lateral Retrátil (Drawer) -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
     <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-top-bar">
+        <span class="sidebar-top-title">📖 Progresso & Anotações</span>
+        <button class="btn-sidebar-close" id="sidebar-close-btn">&times;</button>
+      </div>
       <div class="sidebar-section-header">
         <span class="sidebar-sec-badge" id="sidebar-sec-badge">Seção 1</span>
         <h2 class="sidebar-sec-title" id="sidebar-sec-title">Introdução ao Curso</h2>
