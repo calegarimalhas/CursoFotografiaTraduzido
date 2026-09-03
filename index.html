@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+    <!-- Manifest & PWA Suporte para Mobile/iOS/Android -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PhotoMaster">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Photography Masterclass: Guia Completo de Fotografia - Livro de Exercícios Interativo</title>
+  <meta name="description" content="Edição interativa oficial em Português do Brasil do curso Photography Masterclass Workbook. 273 páginas, todas as 313 imagens, sistema de dicionário de inglês, dicas práticas e curiosidades.">
+  
+  <!-- Tipografia Moderna Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Barra de Navegação Superior (Header) -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-badge">
+        <div class="logo-icon">📸</div>
+        <span>PHOTOGRAPHY MASTERCLASS</span>
+      </div>
+      <span class="course-badge-sub">Workbook Interativo • PT-BR</span>
+    </div>
+
+    <div class="header-center">
+      <!-- Seletor Rápido de Seção -->
+      <div class="section-select-wrapper">
+        <select id="section-select" class="section-select" aria-label="Selecione a seção do curso">
+          <!-- Opções geradas via JS -->
+        </select>
+      </div>
+
+      <!-- Stepper e Paginação -->
+      <div class="page-stepper">
+        <button id="prev-page-btn" class="step-btn" title="Página Anterior (Seta Esquerda)">◀</button>
+        <div class="page-indicator">
+          <span>Pág.</span>
+          <input type="number" id="page-input" class="page-input" min="1" max="282" value="1" aria-label="Número da página">
+          <span>/ <span id="total-pages-label">282</span></span>
+        </div>
+        <button id="next-page-btn" class="step-btn" title="Próxima Página (Seta Direita)">▶</button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Botão de Instalação do PWA (Mobile/iOS/Android) -->
+      <button id="pwa-install-btn" class="btn-header-action btn-pwa-highlight" title="Instalar App no iPhone / Android">
+        📱 Baixar App
+      </button>
+      <!-- Campo de Busca Global -->
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search" class="search-input" placeholder="Buscar lição ou conceito...">
+      </div>
+
+      <!-- Botão de Modo de Leitura -->
+      <button id="view-mode-btn" class="btn-header-action" title="Alternar entre Página Individual e Leitura Contínua">
+        📜 Leitura Contínua
+      </button>
+
+      <!-- Botão do Dicionário de Inglês -->
+      <button id="open-dict-btn" class="btn-header-action" title="Abrir Dicionário Geral de Termos Fotográficos (Ctrl+K)">
+        📖 Dicionário EN
+      </button>
+
+      <!-- Botão de Dicas e Curiosidades -->
+      <button id="open-tips-btn" class="btn-header-action" title="Dicas de Mestres da Fotografia">
+        💡 Dicas de Mestres
+      </button>
+
+      <!-- Alternador de Tema Escuro / Claro -->
+      <button id="theme-toggle-btn" class="btn-header-action" title="Alternar Tema Escuro e Claro">
+        ☀️ Modo Claro
+      </button>
+    </div>
+  </header>
+
+  <!-- Estrutura Principal da Aplicação -->
+  <div class="app-layout">
+    
+    <!-- Barra Lateral (Sidebar Fiel ao PDF Original) -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-section-header">
+        <span class="sidebar-sec-badge" id="sidebar-sec-badge">Seção 1</span>
+        <h2 class="sidebar-sec-title" id="sidebar-sec-title">Introdução ao Curso</h2>
+      </div>
+
+      <!-- Lista de Aulas / Tópicos da Seção -->
+      <ul class="sidebar-lessons-list" id="sidebar-lessons-list">
+        <!-- Itens inseridos dinamicamente pelo app.js -->
+      </ul>
+
+      <!-- Espaço para Anotações Pessoais (com Auto-Save) -->
+      <div class="sidebar-notes-container">
+        <div class="notes-header">
+          <span class="notes-title">✏️ Suas Anotações</span>
+          <span class="notes-save-status" id="notes-status">✓ Salvo localmente</span>
+        </div>
+        <textarea id="page-notes" class="notes-textarea" placeholder="Escreva suas anotações para esta página..."></textarea>
+      </div>
+    </aside>
+
+    <!-- Área de Conteúdo Principal -->
+    <main class="app-main">
+      <div id="app-main-content">
+        <!-- Conteúdo da página atual ou seção contínua renderizado via app.js -->
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Modal Compartilhado para Dicas Práticas e Curiosidades -->
+  <div class="app-modal-backdrop" id="shared-modal">
+    <div class="app-modal-dialog">
+      <div class="app-modal-header">
+        <h3 class="app-modal-title" id="shared-modal-title">Título do Modal</h3>
+        <button class="app-modal-close" id="shared-modal-close">&times;</button>
+      </div>
+      <div class="app-modal-body" id="shared-modal-body">
+        <!-- Conteúdo do modal inserido dinamicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal do Dicionário Completo de Termos em Inglês -->
+  <div class="app-modal-backdrop" id="dictionary-modal">
+    <div class="app-modal-dialog" style="max-width: 840px;">
+      <div class="app-modal-header">
+        <h3 class="app-modal-title">
+          <span>📚 Dicionário Fotográfico Inglês ⇄ Português</span>
+        </h3>
+        <button class="app-modal-close" id="dict-modal-close">&times;</button>
+      </div>
+      <div class="app-modal-body">
+        <input type="text" id="dict-modal-search" class="dict-search-input" placeholder="Pesquise qualquer palavra em inglês ou português (ex: aperture, bokeh, raw, shutter)...">
+        
+        <!-- Filtros por Categoria -->
+        <div class="dict-category-filters">
+          <button class="btn-cat-filter active" data-cat="all">Todos os Termos</button>
+          <button class="btn-cat-filter" data-cat="exposição">Exposição & Sensor</button>
+          <button class="btn-cat-filter" data-cat="óptica">Óptica & Lentes</button>
+          <button class="btn-cat-filter" data-cat="composição">Composição</button>
+          <button class="btn-cat-filter" data-cat="iluminação">Iluminação & Flash</button>
+          <button class="btn-cat-filter" data-cat="câmeras">Câmeras & Equipamento</button>
+          <button class="btn-cat-filter" data-cat="formatos">Arquivos & Formatos</button>
+          <button class="btn-cat-filter" data-cat="negócios">Negócios & Licenças</button>
+        </div>
+
+        <div class="dict-entries-list" id="dict-entries-list">
+          <!-- Lista filtrada gerada pelo dictionary.js / app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lightbox para Ampliação de Fotografias -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <span class="lightbox-close" id="lightbox-close">&times;</span>
+    <img src="" alt="" class="lightbox-img" id="lightbox-img">
+  </div>
+
+    <!-- Modal de Instalação do WebApp PWA (iOS / iPhone e Android) -->
+  <div class="app-modal-backdrop" id="pwa-modal">
+    <div class="app-modal-dialog" style="max-width: 540px;">
+      <div class="app-modal-header">
+        <h3 class="app-modal-title">
+          <span>📱 Instalar App no Seu Celular</span>
+        </h3>
+        <button class="app-modal-close" id="pwa-modal-close">&times;</button>
+      </div>
+      <div class="app-modal-body" id="pwa-modal-body">
+        <!-- Conteúdo preenchido dinamicamente via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts da Aplicação -->
+  <script src="js/dictionary.js"></script>
+  <script src="js/course_data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
