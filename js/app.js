@@ -9,43 +9,48 @@ let state = {
   activeCategoryFilter: 'all'
 };
 
+/* ==========================================================================
+   Sidebar Drawer Retrátil (Funções Globais de Controle Instantâneo)
+   ========================================================================== */
+
+function openSidebar() {
+  const sidebar = document.getElementById('app-sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  const btn = document.getElementById('sidebar-toggle-btn');
+  if (sidebar) sidebar.classList.add('open');
+  if (backdrop) backdrop.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+function closeSidebar() {
+  const sidebar = document.getElementById('app-sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  const btn = document.getElementById('sidebar-toggle-btn');
+  if (sidebar) sidebar.classList.remove('open');
+  if (backdrop) backdrop.classList.remove('active');
+  if (btn) btn.classList.remove('active');
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('app-sidebar');
+  if (!sidebar) return;
+  if (sidebar.classList.contains('open')) {
+    closeSidebar();
+  } else {
+    openSidebar();
+  }
+}
+
+window.openSidebar = openSidebar;
+window.closeSidebar = closeSidebar;
+window.toggleSidebar = toggleSidebar;
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
 
-  // Configuração da Barra Lateral Retrátil (☰ Menu Drawer)
-  const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
-  const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
-  const sidebarBackdrop = document.getElementById('sidebar-backdrop');
-  const appSidebar = document.getElementById('app-sidebar');
-
-  function openSidebar() {
-    if (appSidebar) appSidebar.classList.add('open');
-    if (sidebarBackdrop) sidebarBackdrop.classList.add('active');
-    if (sidebarToggleBtn) sidebarToggleBtn.classList.add('active');
-  }
-
-  function closeSidebar() {
-    if (appSidebar) appSidebar.classList.remove('open');
-    if (sidebarBackdrop) sidebarBackdrop.classList.remove('active');
-    if (sidebarToggleBtn) sidebarToggleBtn.classList.remove('active');
-  }
-
-  function toggleSidebar() {
-    if (appSidebar && appSidebar.classList.contains('open')) {
-      closeSidebar();
-    } else {
-      openSidebar();
-    }
-  }
-
-  if (sidebarToggleBtn) sidebarToggleBtn.addEventListener('click', toggleSidebar);
-  if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
-  if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
-
-  // Torna as funções globais para fácil acesso
-  window.openSidebar = openSidebar;
-  window.closeSidebar = closeSidebar;
-  window.toggleSidebar = toggleSidebar;
+  
 
   initHeaderControls();
   initSearch();

@@ -30,7 +30,7 @@
   <header class="app-header">
     <!-- Linha 1: Menu ☰ e Título do Site -->
     <div class="header-left">
-      <button id="sidebar-toggle-btn" class="btn-sidebar-toggle" onclick="if(window.toggleSidebar) window.toggleSidebar();" title="Abrir Menu (☰)">
+      <button id="sidebar-toggle-btn" class="btn-sidebar-toggle" onclick="toggleSidebar()" title="Abrir Menu (☰)">
         <span class="hamburger-icon">☰</span>
         <span class="sidebar-toggle-label">Menu</span>
       </button>
@@ -86,11 +86,11 @@
     
     <!-- Barra Lateral (Sidebar Fiel ao PDF Original) -->
         <!-- Barra Lateral Retrátil (Drawer) -->
-    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="if(window.closeSidebar) window.closeSidebar();"></div>
+    <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="closeSidebar()"></div>
     <aside class="app-sidebar" id="app-sidebar">
       <div class="sidebar-top-bar">
         <span class="sidebar-top-title">📖 Progresso & Anotações</span>
-        <button class="btn-sidebar-close" id="sidebar-close-btn" onclick="if(window.closeSidebar) window.closeSidebar();">&times;</button>
+        <button class="btn-sidebar-close" id="sidebar-close-btn" onclick="closeSidebar()" title="Fechar Menu">&times;</button>&times;</button>
       </div>
       <div class="sidebar-section-header">
         <span class="sidebar-sec-badge" id="sidebar-sec-badge">Seção 1</span>

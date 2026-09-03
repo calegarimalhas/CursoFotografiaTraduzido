@@ -313,19 +313,7 @@ input, select, textarea {
 }
 
 /* Sidebar */
-.app-sidebar {
-  width: var(--sidebar-width);
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
-  position: sticky;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
-  z-index: 900;
-  overflow-y: auto;
-  transition: transform 0.3s ease;
-}
+
 
 .sidebar-section-header {
   padding: 20px 24px 14px;
@@ -1307,50 +1295,13 @@ input, select, textarea {
   line-height: 1;
 }
 
-.sidebar-backdrop {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background: rgba(11, 15, 25, 0.75) !important;
-  backdrop-filter: blur(5px) !important;
-  -webkit-backdrop-filter: blur(5px) !important;
-  z-index: 1900 !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transition: opacity 0.3s ease, visibility 0.3s ease !important;
-}
 
-.sidebar-backdrop.active {
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
-}
 
-.app-sidebar {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  width: 320px !important;
-  max-width: 85vw !important;
-  height: 100vh !important;
-  background: var(--bg-sidebar) !important;
-  border-right: 1px solid var(--border-color) !important;
-  z-index: 2000 !important;
-  transform: translateX(-100%) !important;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  box-shadow: 6px 0 30px rgba(0, 0, 0, 0.6) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  overflow-y: auto !important;
-}
 
-.app-sidebar.open {
-  transform: translateX(0) !important;
-}
+
+
+
+
 
 .sidebar-top-bar {
   display: flex;
@@ -1382,4 +1333,116 @@ input, select, textarea {
 .btn-sidebar-close:hover {
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.1);
+}
+
+
+/* ==========================================================================
+   Sidebar Drawer Retrátil (GPU Accelerated & Hardware Layer z-index 9999)
+   ========================================================================== */
+
+.btn-sidebar-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: var(--bg-card-subtle) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  padding: 6px 12px !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 0.88rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-sidebar-toggle:hover,
+.btn-sidebar-toggle.active {
+  background: rgba(16, 185, 129, 0.18) !important;
+  color: #34d399 !important;
+  border-color: #34d399 !important;
+}
+
+.hamburger-icon {
+  font-size: 1.1rem !important;
+  line-height: 1 !important;
+}
+
+.sidebar-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(11, 15, 25, 0.8) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  z-index: 9998 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+}
+
+.sidebar-backdrop.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.app-sidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 320px !important;
+  max-width: 85vw !important;
+  height: 100vh !important;
+  background: #0f172a !important;
+  border-right: 1px solid var(--border-color) !important;
+  z-index: 9999 !important;
+  transform: translate3d(-100%, 0, 0) !important;
+  -webkit-transform: translate3d(-100%, 0, 0) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.7) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+}
+
+.app-sidebar.open {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+
+.sidebar-top-bar {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 16px 20px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.sidebar-top-title {
+  font-family: var(--font-heading) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary) !important;
+}
+
+.btn-sidebar-close {
+  background: none !important;
+  border: none !important;
+  color: var(--text-muted) !important;
+  font-size: 1.5rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+}
+
+.btn-sidebar-close:hover {
+  color: var(--text-primary) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
 }
