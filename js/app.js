@@ -11,6 +11,42 @@ let state = {
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+
+  // Configuração da Barra Lateral Retrátil (☰ Menu Drawer)
+  const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+  const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+  const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+  const appSidebar = document.getElementById('app-sidebar');
+
+  function openSidebar() {
+    if (appSidebar) appSidebar.classList.add('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.add('active');
+    if (sidebarToggleBtn) sidebarToggleBtn.classList.add('active');
+  }
+
+  function closeSidebar() {
+    if (appSidebar) appSidebar.classList.remove('open');
+    if (sidebarBackdrop) sidebarBackdrop.classList.remove('active');
+    if (sidebarToggleBtn) sidebarToggleBtn.classList.remove('active');
+  }
+
+  function toggleSidebar() {
+    if (appSidebar && appSidebar.classList.contains('open')) {
+      closeSidebar();
+    } else {
+      openSidebar();
+    }
+  }
+
+  if (sidebarToggleBtn) sidebarToggleBtn.addEventListener('click', toggleSidebar);
+  if (sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', closeSidebar);
+  if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
+
+  // Torna as funções globais para fácil acesso
+  window.openSidebar = openSidebar;
+  window.closeSidebar = closeSidebar;
+  window.toggleSidebar = toggleSidebar;
+
   initHeaderControls();
   initSearch();
   initModals();
@@ -122,6 +158,7 @@ function initKeyboardNav() {
 }
 
 function goToPage(pno) {
+  if (window.closeSidebar) window.closeSidebar();
   if (pno < 1) pno = 1;
   if (pno > COURSE_DATA.length) pno = COURSE_DATA.length;
   state.currentPage = pno;

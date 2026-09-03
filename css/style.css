@@ -452,11 +452,13 @@ input, select, textarea {
 
 /* Main Content Area */
 .app-main {
-  margin-left: var(--sidebar-width);
   flex: 1;
-  padding: 32px 48px 80px;
-  max-width: 1280px;
-  transition: all 0.3s ease;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  padding: 20px 16px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Mode: Continuous Scroll */
