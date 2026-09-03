@@ -26,65 +26,57 @@
 
   <!-- Barra de Navegação Superior (Header) -->
     <!-- Barra de Navegação Superior (Header Sticky sem sobreposição) -->
+    <!-- Barra de Navegação Superior (Header Mobile & Desktop em 3 Níveis Limpos) -->
   <header class="app-header">
-    <div class="header-top-row">
-      <div class="header-left">
-      <button id="sidebar-toggle-btn" class="btn-sidebar-toggle" title="Abrir Menu de Aulas e Anotações (☰)">
+    <!-- Linha 1: Menu ☰ e Título do Site -->
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="btn-sidebar-toggle" title="Abrir Menu (☰)">
         <span class="hamburger-icon">☰</span>
         <span class="sidebar-toggle-label">Menu</span>
       </button>
-        <div class="logo-badge">
-          <div class="logo-icon">📸</div>
-          <span>PHOTOGRAPHY MASTERCLASS</span>
-        </div>
-        <span class="course-badge-sub">Workbook Interativo • PT-BR</span>
+      <div class="logo-badge">
+        <div class="logo-icon">📸</div>
+        <span>PHOTOGRAPHY MASTERCLASS</span>
       </div>
+      <span class="course-badge-sub">Workbook PT-BR</span>
+    </div>
 
-      <div class="header-right">
-        <!-- Botão de Instalação do PWA (Mobile/iOS/Android) -->
-        <button id="pwa-install-btn" class="btn-header-action btn-pwa-highlight" title="Instalar App no iPhone / Android">
-          📱 Baixar App
-        </button>
-        <!-- Campo de Busca Global -->
-        <div class="search-container">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="global-search" class="search-input" placeholder="Buscar lição...">
-        </div>
-
-        <!-- Botão de Modo de Leitura -->
-        <button id="view-mode-btn" class="btn-header-action" title="Alternar entre Página Individual e Leitura Contínua">
-          📜 Leitura
-        </button>
-
-        <!-- Botão do Dicionário de Inglês -->
-        <button id="open-dict-btn" class="btn-header-action" title="Abrir Dicionário Geral de Termos Fotográficos (Ctrl+K)">
-          📖 Dicionário
-        </button>
-
-        <!-- Alternador de Tema Escuro / Claro -->
-        <button id="theme-toggle-btn" class="btn-header-action" title="Alternar Tema Escuro e Claro">
-          ☀️ Modo Claro
-        </button>
+    <!-- Linha 2 (Mobile): Ações Rápidas (Baixar App, Leitura, Dicionário, Tema) -->
+    <div class="header-right">
+      <button id="pwa-install-btn" class="btn-header-action btn-pwa-highlight" title="Instalar App no Celular">
+        📱 Baixar App
+      </button>
+      <button id="view-mode-btn" class="btn-header-action" title="Modo de Leitura">
+        📜 Leitura
+      </button>
+      <button id="open-dict-btn" class="btn-header-action" title="Dicionário de Inglês">
+        📖 Dicionário
+      </button>
+      <button id="theme-toggle-btn" class="btn-header-action" title="Alternar Tema Escuro e Claro">
+        ☀️ Modo Claro
+      </button>
+      <div class="search-container">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="global-search" class="search-input" placeholder="Buscar lição ou conceito...">
       </div>
     </div>
 
+    <!-- Linha 3 (Mobile): Seletor de Seções e Paginação com Respiro Generoso -->
     <div class="header-center">
-      <!-- Seletor Rápido de Seção -->
       <div class="section-select-wrapper">
         <select id="section-select" class="section-select" aria-label="Selecione a seção do curso">
           <!-- Opções geradas via JS -->
         </select>
       </div>
 
-      <!-- Stepper e Paginação -->
       <div class="page-stepper">
-        <button id="prev-page-btn" class="step-btn" title="Página Anterior (Seta Esquerda)">◀</button>
+        <button id="prev-page-btn" class="step-btn" title="Página Anterior">◀</button>
         <div class="page-indicator">
           <span>Pág.</span>
-          <input type="number" id="page-input" class="page-input" min="1" max="282" value="1" aria-label="Número da página">
+          <input type="number" id="page-input" class="page-input" min="1" max="282" value="1" aria-label="Página">
           <span>/ <span id="total-pages-label">282</span></span>
         </div>
-        <button id="next-page-btn" class="step-btn" title="Próxima Página (Seta Direita)">▶</button>
+        <button id="next-page-btn" class="step-btn" title="Próxima Página">▶</button>
       </div>
     </div>
   </header>

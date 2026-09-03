@@ -1152,26 +1152,22 @@ input, select, textarea {
 
 @media (max-width: 768px) {
   .app-header {
-    padding: 8px 12px;
-    gap: 8px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
+    padding: 10px 12px;
+    gap: 10px;
     position: sticky;
     top: 0;
+    z-index: 1000;
   }
-  
-  .header-top-row {
+
+  /* Linha 1: Menu ☰ e Título */
+  .header-left {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 8px;
-  }
-
-  .header-left {
-    gap: 6px;
-    flex-shrink: 0;
   }
 
   .logo-badge span {
@@ -1182,83 +1178,83 @@ input, select, textarea {
     display: none;
   }
 
+  /* Linha 2: Ações Rápidas (Baixar App, Leitura, Dicionário, Tema) */
   .header-right {
     display: flex;
     align-items: center;
-    gap: 4px;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 2px;
-  }
-
-  .search-container {
-    max-width: 110px;
-  }
-
-  .search-input {
-    font-size: 0.75rem;
-    padding: 4px 8px 4px 26px;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 4px 0;
   }
 
   .btn-header-action {
-    padding: 5px 8px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    flex-shrink: 0;
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    flex: 1 1 auto;
+    min-width: fit-content;
+    text-align: center;
+    justify-content: center;
   }
 
-  .header-center {
+  .search-container {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
+    max-width: 100%;
     margin-top: 4px;
-    padding-top: 6px;
+  }
+
+  .search-input {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 6px 10px 6px 30px;
+  }
+
+  /* Linha 3: Seletor de Seções e Paginação com Respiro Generoso */
+  .header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    width: 100%;
+    padding-top: 10px;
+    margin-top: 4px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .section-select-wrapper {
-    flex: 1;
-    max-width: 55%;
+    width: 100%;
+    max-width: 100%;
   }
 
   .section-select {
-    font-size: 0.78rem;
-    padding: 6px 8px;
+    width: 100%;
+    font-size: 0.82rem;
+    padding: 8px 12px;
   }
 
   .page-stepper {
-    flex: 1;
-    max-width: 45%;
-    justify-content: flex-end;
-    gap: 4px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 4px;
   }
 
   .step-btn {
-    padding: 4px 8px;
-    font-size: 0.8rem;
+    padding: 6px 14px;
+    font-size: 0.9rem;
   }
 
   .page-indicator {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
   }
 
   .page-input {
-    width: 38px;
-    padding: 2px 4px;
-    font-size: 0.78rem;
-  }
-
-  .app-layout {
-    flex-direction: column;
-  }
-
-  .app-sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-    top: 0;
+    width: 44px;
+    padding: 4px 6px;
+    font-size: 0.85rem;
   }
 
   .lesson-body.has-images {
@@ -1273,162 +1269,9 @@ input, select, textarea {
     font-size: 0.9rem;
   }
 
-  .lesson-top-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .lesson-actions {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-
-  .lesson-actions button {
-    width: 100%;
-    justify-content: center;
-  }
-
   .bottom-nav-bar {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-}
-
-/* ==========================================================================
-   Sidebar Drawer Retrátil (☰ Menu & Anotações) - Layout 100% Fluido
-   ========================================================================== */
-
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-.btn-sidebar-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
-  padding: 6px 12px;
-  border-radius: var(--radius-md);
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-sidebar-toggle:hover,
-.btn-sidebar-toggle.active {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border-color: #34d399;
-}
-
-.hamburger-icon {
-  font-size: 1.1rem;
-  line-height: 1;
-}
-
-.sidebar-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(11, 15, 25, 0.7);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  z-index: 1900;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar-backdrop.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.app-sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 320px;
-  max-width: 85vw;
-  background: var(--bg-sidebar);
-  border-right: 1px solid var(--border-color);
-  z-index: 2000;
-  transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 6px 0 30px rgba(0, 0, 0, 0.6);
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.app-sidebar.open {
-  transform: translateX(0);
-}
-
-.sidebar-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid var(--border-color);
-}
-
-.sidebar-top-title {
-  font-family: var(--font-heading);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--accent-primary);
-}
-
-.btn-sidebar-close {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.btn-sidebar-close:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.app-layout {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  min-height: calc(100vh - var(--header-height));
-  margin: 0;
-  padding: 0;
-}
-
-.app-main {
-  flex: 1;
-  width: 100%;
-  max-width: 100%;
-  padding: 20px 16px;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.lesson-card {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
