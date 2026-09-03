@@ -93,28 +93,35 @@ input, select, textarea {
   color: inherit;
 }
 
-/* Header Bar */
+/* Header Bar Sticky (Sem Sobreposição de Conteúdo) */
 .app-header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  height: var(--header-height);
   background: var(--bg-header);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-color);
   display: flex;
+  flex-direction: column;
+  padding: 8px 24px;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.header-top-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
-  z-index: 1000;
+  width: 100%;
+  gap: 16px;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .logo-badge {
@@ -151,10 +158,19 @@ input, select, textarea {
   letter-spacing: 1px;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .header-center {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .section-select-wrapper {
@@ -292,7 +308,7 @@ input, select, textarea {
 /* Main Layout Container */
 .app-layout {
   display: flex;
-  margin-top: var(--header-height);
+  margin-top: 0;
   min-height: calc(100vh - var(--header-height));
 }
 
@@ -303,10 +319,9 @@ input, select, textarea {
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   top: var(--header-height);
-  bottom: 0;
-  left: 0;
+  height: calc(100vh - var(--header-height));
   z-index: 900;
   overflow-y: auto;
   transition: transform 0.3s ease;
@@ -1134,227 +1149,27 @@ input, select, textarea {
 }
 
 @media (max-width: 768px) {
-  .app-sidebar {
-    transform: translateX(-100%);
-  }
-  .app-sidebar.open {
-    transform: translateX(0);
-  }
-  .app-main {
-    margin-left: 0;
-    padding: 16px 16px 60px;
-  }
-  .lesson-card {
-    padding: 20px 18px;
-  }
-  .lesson-title-pt {
-    font-size: 1.6rem;
-  }
-  .search-input {
-    width: 130px;
-  }
-  .section-select {
-    max-width: 160px;
-  }
-}
-
-
-/* ==========================================================================
-   Seção de Recursos e Vídeos do YouTube
-   ========================================================================== */
-.video-resources-section {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-color);
-}
-
-.video-section-title {
-  font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  color: var(--text-primary);
-}
-
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.resource-card {
-  background: var(--bg-card-subtle);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
-  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-}
-
-.resource-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-md);
-}
-
-.resource-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.resource-type-icon {
-  font-size: 1.4rem;
-  flex-shrink: 0;
-}
-
-.resource-title {
-  font-weight: 700;
-  font-size: 0.92rem;
-  color: var(--text-primary);
-  line-height: 1.35;
-}
-
-.resource-channel {
-  font-size: 0.75rem;
-  color: var(--accent-primary);
-  margin-top: 2px;
-}
-
-.resource-desc {
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-.resource-link-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.2s;
-  align-self: flex-start;
-}
-
-.resource-btn-youtube {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ff4d4d;
-  border: 1px solid rgba(239, 68, 68, 0.4);
-}
-
-.resource-btn-youtube:hover {
-  background: #ff4d4d;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
-}
-
-.resource-btn-article {
-  background: rgba(14, 165, 233, 0.15);
-  color: var(--accent-secondary);
-  border: 1px solid rgba(14, 165, 233, 0.4);
-}
-
-.resource-btn-article:hover {
-  background: var(--accent-secondary);
-  color: #0b0f19;
-  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
-}
-
-.resource-btn-tool {
-  background: rgba(6, 214, 160, 0.15);
-  color: var(--accent-primary);
-  border: 1px solid rgba(6, 214, 160, 0.4);
-}
-
-.resource-btn-tool:hover {
-  background: var(--accent-primary);
-  color: #0b0f19;
-  box-shadow: 0 4px 12px rgba(6, 214, 160, 0.35);
-}
-
-/* Estilo refinado para a caixa de Dica de Foto Original */
-.photo-tip-box {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14), rgba(245, 158, 11, 0.05));
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  border-left: 5px solid var(--accent-gold);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  margin: 20px 0;
-  position: relative;
-}
-
-.tip-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #0b0f19;
-  background: var(--accent-gold);
-  padding: 4px 12px;
-  border-radius: 999px;
-  margin-bottom: 12px;
-}
-
-.photo-tip-content {
-  color: #ffffff;
-  font-size: 0.98rem;
-  font-weight: 600;
-  line-height: 1.6;
-}
-
-[data-theme="light"] .photo-tip-content {
-  color: #1e293b;
-}
-
-
-/* ==========================================================================
-   PWA, iOS Safe Area & Mobile UI/UX Enhancements
-   ========================================================================== */
-
-body {
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-}
-
-.btn-pwa-highlight {
-  background: linear-gradient(135deg, #10b981, #059669) !important;
-  color: #ffffff !important;
-  border: none !important;
-  font-weight: 600 !important;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-pwa-highlight:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 18px rgba(16, 185, 129, 0.6);
-}
-
-@media (max-width: 768px) {
   .app-header {
-    padding: 10px 12px;
+    padding: 8px 12px;
     gap: 8px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: sticky;
+    top: 0;
   }
   
+  .header-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+  }
+
   .header-left {
     gap: 6px;
+    flex-shrink: 0;
   }
 
   .logo-badge span {
@@ -1365,29 +1180,83 @@ body {
     display: none;
   }
 
-  .header-center {
-    width: 100%;
-    order: 3;
-    justify-content: space-between;
-    margin-top: 4px;
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
   }
 
-  .header-right {
-    gap: 6px;
+  .search-container {
+    max-width: 110px;
+  }
+
+  .search-input {
+    font-size: 0.75rem;
+    padding: 4px 8px 4px 26px;
   }
 
   .btn-header-action {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .header-center {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .section-select-wrapper {
+    flex: 1;
+    max-width: 55%;
+  }
+
+  .section-select {
+    font-size: 0.78rem;
+    padding: 6px 8px;
   }
 
   .page-stepper {
-    width: 100%;
-    justify-content: space-between;
+    flex: 1;
+    max-width: 45%;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .step-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+
+  .page-indicator {
+    font-size: 0.78rem;
   }
 
   .page-input {
-    width: 48px;
+    width: 38px;
+    padding: 2px 4px;
+    font-size: 0.78rem;
+  }
+
+  .app-layout {
+    flex-direction: column;
+  }
+
+  .app-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
   }
 
   .lesson-body.has-images {
